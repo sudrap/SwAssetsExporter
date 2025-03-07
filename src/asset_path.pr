@@ -2,13 +2,13 @@
 
 {* Generate name as [groupName]-[originalName][-numberOfDuplicates][extension] *}
 {[ let duplicateExtension = (asset.previouslyDuplicatedNames > 0 ? ("-" + asset.previouslyDuplicatedNames) : "") /]}
-{[ let name = (asset.group.name + "-" + asset.originalName + duplicateExtension + "." + asset.format) /]}
+{[ let name = (asset.group.name + "-" + asset.originalName + duplicateExtension) /]}
 
 {* Generate path from segments. Path remains the same *}
-{[ let path = (asset.group.path.append(asset.group.name).append((asset.originalName + ".imageset")).join("/")) /]}
+{[ let path = (asset.group.path.append(asset.group.name).append((name + ".imageset")).join("/")) /]}
 
 {* Generate asset path *}
-Assets.xcassets/{{ path + "/" }}{{ name }}
+Assets.xcassets/{{ path + "/" }}{{ name + "." + asset.format}}
 
 
 
